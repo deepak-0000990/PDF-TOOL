@@ -1,0 +1,83 @@
+import {
+  Layers,
+  Scissors,
+  Grid,
+  RotateCw,
+  Crop,
+  Globe,
+  FileText,
+  FileSpreadsheet,
+  Presentation,
+  FileUp,
+  Tv,
+  Sheet,
+  Image,
+  Images,
+  FileCode,
+  Archive,
+  Edit3,
+  PenTool,
+  Stamp,
+  Hash,
+  Lock,
+  Unlock,
+  EyeOff,
+  Wrench,
+  CheckSquare,
+  GitCompare,
+  Minimize2,
+  Camera,
+  Search,
+  Sparkles,
+  Languages,
+  ArrowRight,
+  AlertCircle,
+  Loader2
+} from 'lucide-react';
+
+const ICON_MAP = {
+  Layers,
+  Scissors,
+  Grid,
+  RotateCw,
+  Crop,
+  Globe,
+  FileText,
+  FileSpreadsheet,
+  Presentation,
+  FileUp,
+  Tv,
+  Sheet,
+  Image,
+  Images,
+  FileCode,
+  Archive,
+  Edit3,
+  PenTool,
+  Stamp,
+  Hash,
+  Lock,
+  Unlock,
+  EyeOff,
+  Wrench,
+  CheckSquare,
+  GitCompare,
+  Minimize2,
+  Camera,
+  Search,
+  Sparkles,
+  Languages,
+  ArrowRight,
+  AlertCircle,
+  Loader2
+};
+
+export function getToolIcon(iconName) {
+  return ICON_MAP[iconName] || FileText;
+}
+
+export {
+  ArrowRight,
+  AlertCircle,
+  Loader2
+};
