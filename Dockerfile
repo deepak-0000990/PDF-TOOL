@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     ca-certificates \
     fonts-liberation \
-    libasound2 \
+    libasound2t64 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
     libc6 \
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libexpat1 \
     libfontconfig1 \
     libgbm1 \
-    libgcc1 \
+    libgcc-s1 \
     libglib2.0-0 \
     libgtk-3-0 \
     libnspr4 \
@@ -62,16 +62,15 @@ RUN pip install --no-cache-dir \
     reportlab \
     pikepdf \
     pillow \
-    img2pdf \
-    pymupdf4llm
+    img2pdf
 
-# Copy backend files
+# Copy backend package files and install Node dependencies
 COPY backend/package*.json ./backend/
 WORKDIR /app/backend
 RUN npm ci --omit=dev
 
-# Install Playwright Chromium browser
-RUN npx playwright install chromium
+# Install Playwright Chromium browser (skips system deps since we installed them above)
+RUN npx playwright install chromium --with-deps 2>/dev/null || npx playwright install chromium
 
 # Copy remaining project files
 WORKDIR /app
@@ -83,5 +82,7 @@ EXPOSE 5000
 
 ENV PORT=5000
 ENV NODE_ENV=production
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=0
+ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
 
 CMD ["node", "src/server.js"]

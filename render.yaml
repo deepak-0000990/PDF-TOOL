@@ -1,4 +1,5 @@
 services:
+  # ── Backend API (Node.js + Express) ────────────────────────────────────────
   - type: web
     name: pdf-toolkit-backend
     env: docker
@@ -8,3 +9,7 @@ services:
     envVars:
       - key: PORT
         value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://your-vercel-app.vercel.app   # ← update after Vercel deploy
